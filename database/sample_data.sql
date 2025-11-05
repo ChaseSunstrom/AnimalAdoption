@@ -7,21 +7,21 @@ USE animal_adoption;
 -- Sample Users
 -- ============================================================================
 -- Password for all test users: password123
--- BCrypt hash: $2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYzpLHJ0NNu
+-- BCrypt hash: $2a$12$/6wYA/9cIPq5BFxLyHHW2OPk/2dlMHdCrfHTM/btnMnWAqPWgOmJC
 
 -- Adopters
 INSERT INTO users (email, password_hash, user_type, first_name, last_name, phone, is_active) VALUES
-('john.doe@email.com', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYzpLHJ0NNu', 'adopter', 'John', 'Doe', '555-0101', TRUE),
-('jane.smith@email.com', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYzpLHJ0NNu', 'adopter', 'Jane', 'Smith', '555-0102', TRUE),
-('mike.johnson@email.com', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYzpLHJ0NNu', 'adopter', 'Mike', 'Johnson', '555-0103', TRUE),
-('sarah.williams@email.com', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYzpLHJ0NNu', 'adopter', 'Sarah', 'Williams', '555-0104', TRUE),
-('david.brown@email.com', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYzpLHJ0NNu', 'adopter', 'David', 'Brown', '555-0105', TRUE);
+('john.doe@email.com', '$2a$12$/6wYA/9cIPq5BFxLyHHW2OPk/2dlMHdCrfHTM/btnMnWAqPWgOmJC', 'adopter', 'John', 'Doe', '555-0101', TRUE),
+('jane.smith@email.com', '$2a$12$/6wYA/9cIPq5BFxLyHHW2OPk/2dlMHdCrfHTM/btnMnWAqPWgOmJC', 'adopter', 'Jane', 'Smith', '555-0102', TRUE),
+('mike.johnson@email.com', '$2a$12$/6wYA/9cIPq5BFxLyHHW2OPk/2dlMHdCrfHTM/btnMnWAqPWgOmJC', 'adopter', 'Mike', 'Johnson', '555-0103', TRUE),
+('sarah.williams@email.com', '$2a$12$/6wYA/9cIPq5BFxLyHHW2OPk/2dlMHdCrfHTM/btnMnWAqPWgOmJC', 'adopter', 'Sarah', 'Williams', '555-0104', TRUE),
+('david.brown@email.com', '$2a$12$/6wYA/9cIPq5BFxLyHHW2OPk/2dlMHdCrfHTM/btnMnWAqPWgOmJC', 'adopter', 'David', 'Brown', '555-0105', TRUE);
 
 -- Shelters
 INSERT INTO users (email, password_hash, user_type, first_name, last_name, phone, is_active) VALUES
-('contact@happypaws.org', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYzpLHJ0NNu', 'shelter', 'Happy', 'Paws', '555-1001', TRUE),
-('info@secondchance.org', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYzpLHJ0NNu', 'shelter', 'Second', 'Chance', '555-1002', TRUE),
-('rescue@furryfriendsrescue.org', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYzpLHJ0NNu', 'shelter', 'Furry', 'Friends', '555-1003', TRUE);
+('contact@happypaws.org', '$2a$12$/6wYA/9cIPq5BFxLyHHW2OPk/2dlMHdCrfHTM/btnMnWAqPWgOmJC', 'shelter', 'Happy', 'Paws', '555-1001', TRUE),
+('info@secondchance.org', '$2a$12$/6wYA/9cIPq5BFxLyHHW2OPk/2dlMHdCrfHTM/btnMnWAqPWgOmJC', 'shelter', 'Second', 'Chance', '555-1002', TRUE),
+('rescue@furryfriendsrescue.org', '$2a$12$/6wYA/9cIPq5BFxLyHHW2OPk/2dlMHdCrfHTM/btnMnWAqPWgOmJC', 'shelter', 'Furry', 'Friends', '555-1003', TRUE);
 
 -- ============================================================================
 -- Adopter Profiles
@@ -137,13 +137,13 @@ INSERT INTO animals (
  'Whiskers is a playful and affectionate cat who loves attention. He purrs constantly and enjoys being petted.',
  'Neutered, FIV/FeLV negative',
  'Very social, litter box trained, loves to play with toys',
- TRUE, TRUE, TRUE, FALSE, FALSE, 'moderate', 'available', '2024-11-20', '/images/animals/whiskers.jpg'),
+ TRUE, TRUE, TRUE, FALSE, FALSE, 'moderate', 'available', '2024-11-20', 'https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg'),
 
 (1, 'Mittens', 'cat', 'Domestic Longhair', 7, 0, 'female', 'medium', 'Gray and White', 10.5,
  'Mittens is a sweet senior lady looking for a quiet home. She enjoys napping in sunny spots and gentle affection.',
  'Spayed, mild hyperthyroidism on medication',
  'Calm, independent, prefers quiet environment',
- TRUE, FALSE, TRUE, FALSE, FALSE, 'low', 'available', '2024-10-05', '/images/animals/mittens.jpg'),
+ TRUE, FALSE, TRUE, FALSE, FALSE, 'low', 'available', '2024-10-05', 'https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg'),
 
 -- Second Chance Animals
 (2, 'Charlie', 'dog', 'Corgi Mix', 3, 0, 'male', 'small', 'Brown and White', 22.0,
@@ -162,13 +162,13 @@ INSERT INTO animals (
  'Shadow is a playful kitten full of energy. He loves chasing toys and exploring every corner of the house.',
  'Neutered, all kitten vaccinations complete',
  'Very playful, social, good with other cats',
- TRUE, FALSE, TRUE, FALSE, FALSE, 'high', 'available', '2024-12-01', '/images/animals/shadow.jpg'),
+ TRUE, FALSE, TRUE, FALSE, FALSE, 'high', 'available', '2024-12-01', 'https://cdn2.thecatapi.com/images/ebv.jpg'),
 
 (2, 'Snowball', 'cat', 'Persian Mix', 4, 0, 'female', 'medium', 'White', 11.0,
  'Snowball is a beautiful and gentle cat. She requires regular grooming due to her long coat.',
  'Spayed, requires regular grooming',
  'Sweet and calm, enjoys being brushed',
- TRUE, FALSE, TRUE, FALSE, FALSE, 'low', 'available', '2024-10-15', '/images/animals/snowball.jpg'),
+ TRUE, FALSE, TRUE, FALSE, FALSE, 'low', 'available', '2024-10-15', 'https://cdn2.thecatapi.com/images/5cq.jpg'),
 
 -- Furry Friends Animals
 (3, 'Zeus', 'dog', 'Great Dane', 4, 0, 'male', 'extra_large', 'Black', 140.0,
@@ -187,13 +187,13 @@ INSERT INTO animals (
  'Ginger is a sweet and independent cat. She enjoys playtime but also values her alone time.',
  'Spayed, healthy',
  'Independent, litter trained, moderately active',
- TRUE, FALSE, TRUE, FALSE, FALSE, 'moderate', 'available', '2024-11-10', '/images/animals/ginger.jpg'),
+ TRUE, FALSE, TRUE, FALSE, FALSE, 'moderate', 'available', '2024-11-10', 'https://cdn2.thecatapi.com/images/a8m.jpg'),
 
 (3, 'Oliver', 'cat', 'Siamese Mix', 2, 0, 'male', 'medium', 'Seal Point', 10.0,
  'Oliver is a talkative and social cat who loves interaction. He will follow you around and "help" with everything.',
  'Neutered, FIV/FeLV negative',
  'Very vocal, social, needs attention and interaction',
- TRUE, FALSE, TRUE, FALSE, FALSE, 'high', 'available', '2024-12-05', '/images/animals/oliver.jpg'),
+ TRUE, FALSE, TRUE, FALSE, FALSE, 'high', 'available', '2024-12-05', 'https://cdn2.thecatapi.com/images/MTUwODA2Mw.jpg'),
 
 (3, 'Smokey', 'rabbit', 'Holland Lop', 0, 8, 'male', 'small', 'Gray', 3.5,
  'Smokey is an adorable bunny with soft gray fur. He is litter trained and loves fresh vegetables.',

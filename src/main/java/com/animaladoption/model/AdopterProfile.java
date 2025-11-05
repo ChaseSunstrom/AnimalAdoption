@@ -103,7 +103,7 @@ public class AdopterProfile {
         this.homeSize = homeSize;
     }
 
-    public boolean hasYard() {
+    public boolean isHasYard() {
         return hasYard;
     }
 
@@ -111,7 +111,7 @@ public class AdopterProfile {
         this.hasYard = hasYard;
     }
 
-    public boolean hasChildren() {
+    public boolean isHasChildren() {
         return hasChildren;
     }
 
@@ -127,7 +127,7 @@ public class AdopterProfile {
         this.childrenAges = childrenAges;
     }
 
-    public boolean hasOtherPets() {
+    public boolean isHasOtherPets() {
         return hasOtherPets;
     }
 

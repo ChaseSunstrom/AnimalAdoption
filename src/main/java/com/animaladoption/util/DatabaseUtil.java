@@ -11,7 +11,6 @@ import java.sql.SQLException;
 public class DatabaseUtil {
 
     // Direct JDBC connection parameters
-    // IMPORTANT: Update these values to match your MySQL configuration
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/animal_adoption?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String JDBC_USER = "root"; // Change this to your MySQL username
     private static final String JDBC_PASSWORD = "1234"; // Change this to your MySQL password

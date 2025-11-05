@@ -31,10 +31,10 @@ public class AdopterProfileDAO extends BaseDAO {
             stmt.setString(6, profile.getZipCode());
             stmt.setString(7, profile.getHomeType());
             stmt.setString(8, profile.getHomeSize());
-            stmt.setBoolean(9, profile.hasYard());
-            stmt.setBoolean(10, profile.hasChildren());
+            stmt.setBoolean(9, profile.isHasYard());
+            stmt.setBoolean(10, profile.isHasChildren());
             stmt.setString(11, profile.getChildrenAges());
-            stmt.setBoolean(12, profile.hasOtherPets());
+            stmt.setBoolean(12, profile.isHasOtherPets());
             stmt.setString(13, profile.getOtherPetsDescription());
             stmt.setString(14, profile.getExperienceLevel());
             stmt.setString(15, profile.getActivityLevel());
@@ -118,10 +118,10 @@ public class AdopterProfileDAO extends BaseDAO {
             stmt.setString(5, profile.getZipCode());
             stmt.setString(6, profile.getHomeType());
             stmt.setString(7, profile.getHomeSize());
-            stmt.setBoolean(8, profile.hasYard());
-            stmt.setBoolean(9, profile.hasChildren());
+            stmt.setBoolean(8, profile.isHasYard());
+            stmt.setBoolean(9, profile.isHasChildren());
             stmt.setString(10, profile.getChildrenAges());
-            stmt.setBoolean(11, profile.hasOtherPets());
+            stmt.setBoolean(11, profile.isHasOtherPets());
             stmt.setString(12, profile.getOtherPetsDescription());
             stmt.setString(13, profile.getExperienceLevel());
             stmt.setString(14, profile.getActivityLevel());

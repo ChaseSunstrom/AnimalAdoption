@@ -92,8 +92,12 @@ public class AuthenticationService {
         if (userId > 0) {
             user.setUserId(userId);
 
-            // Create empty adopter profile
+            // Create empty adopter profile with required fields set to defaults
             AdopterProfile profile = new AdopterProfile(userId);
+            profile.setHomeType("house");  // Default value
+            profile.setHomeSize("medium"); // Default value
+            profile.setExperienceLevel("first_time"); // Default value
+            profile.setActivityLevel("moderate"); // Default value
             adopterProfileDAO.create(profile);
 
             return user;

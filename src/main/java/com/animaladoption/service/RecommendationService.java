@@ -135,14 +135,14 @@ public class RecommendationService {
         double score = 100.0;
 
         // Check kids compatibility
-        if (profile.hasChildren()) {
+        if (profile.isHasChildren()) {
             if (!animal.isGoodWithKids()) {
                 score -= 50; // Major penalty
             }
         }
 
         // Check other pets compatibility
-        if (profile.hasOtherPets()) {
+        if (profile.isHasOtherPets()) {
             String petsDesc = profile.getOtherPetsDescription();
             if (petsDesc != null) {
                 if (petsDesc.toLowerCase().contains("dog") && !animal.isGoodWithDogs()) {
@@ -166,7 +166,7 @@ public class RecommendationService {
         }
 
         String experience = profile.getExperienceLevel().toLowerCase();
-        boolean requiresExperience = animal.requiresExperiencedOwner();
+        boolean requiresExperience = animal.isRequiresExperiencedOwner();
 
         if (requiresExperience) {
             // Animal requires experienced owner
@@ -206,7 +206,7 @@ public class RecommendationService {
         double score = 100.0;
 
         // Check yard requirement
-        if (animal.requiresYard() && !profile.hasYard()) {
+        if (animal.isRequiresYard() && !profile.isHasYard()) {
             score -= 40; // Major penalty
         }
 
@@ -234,7 +234,7 @@ public class RecommendationService {
         }
 
         // Bonus for house with yard
-        if (profile.hasYard() && "house".equals(profile.getHomeType())) {
+        if (profile.isHasYard() && "house".equals(profile.getHomeType())) {
             score += 10;
         }
 

@@ -186,7 +186,7 @@ public class Animal {
         this.goodWithCats = goodWithCats;
     }
 
-    public boolean requiresExperiencedOwner() {
+    public boolean isRequiresExperiencedOwner() {
         return requiresExperiencedOwner;
     }
 
@@ -194,7 +194,7 @@ public class Animal {
         this.requiresExperiencedOwner = requiresExperiencedOwner;
     }
 
-    public boolean requiresYard() {
+    public boolean isRequiresYard() {
         return requiresYard;
     }
 

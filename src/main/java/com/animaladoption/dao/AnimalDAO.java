@@ -176,8 +176,8 @@ public class AnimalDAO extends BaseDAO {
             stmt.setBoolean(14, animal.isGoodWithKids());
             stmt.setBoolean(15, animal.isGoodWithDogs());
             stmt.setBoolean(16, animal.isGoodWithCats());
-            stmt.setBoolean(17, animal.requiresExperiencedOwner());
-            stmt.setBoolean(18, animal.requiresYard());
+            stmt.setBoolean(17, animal.isRequiresExperiencedOwner());
+            stmt.setBoolean(18, animal.isRequiresYard());
             stmt.setString(19, animal.getEnergyLevel());
             stmt.setString(20, animal.getStatus());
             stmt.setDate(21, animal.getIntakeDate());
@@ -224,8 +224,8 @@ public class AnimalDAO extends BaseDAO {
             stmt.setBoolean(13, animal.isGoodWithKids());
             stmt.setBoolean(14, animal.isGoodWithDogs());
             stmt.setBoolean(15, animal.isGoodWithCats());
-            stmt.setBoolean(16, animal.requiresExperiencedOwner());
-            stmt.setBoolean(17, animal.requiresYard());
+            stmt.setBoolean(16, animal.isRequiresExperiencedOwner());
+            stmt.setBoolean(17, animal.isRequiresYard());
             stmt.setString(18, animal.getEnergyLevel());
             stmt.setString(19, animal.getStatus());
             stmt.setString(20, animal.getPrimaryImageUrl());
