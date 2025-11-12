@@ -14,6 +14,7 @@
                     <c:when test="${not empty sessionScope.user}">
                         <c:if test="${sessionScope.userType eq 'adopter'}">
                             <li><a href="${pageContext.request.contextPath}/dashboard">My Dashboard</a></li>
+                            <li><a href="${pageContext.request.contextPath}/saved-animals">❤️ Saved Animals</a></li>
                             <li><a href="${pageContext.request.contextPath}/applications">My Applications</a></li>
                         </c:if>
                         <c:if test="${sessionScope.userType eq 'shelter'}">

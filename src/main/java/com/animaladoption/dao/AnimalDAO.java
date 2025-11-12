@@ -313,7 +313,7 @@ public class AnimalDAO extends BaseDAO {
         }
     }
 
-    private Animal mapResultSetToAnimal(ResultSet rs) throws SQLException {
+    protected Animal mapResultSetToAnimal(ResultSet rs) throws SQLException {
         Animal animal = mapResultSetToAnimalBasic(rs);
 
         // Map shelter information if available

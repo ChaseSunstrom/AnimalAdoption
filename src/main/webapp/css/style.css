@@ -574,6 +574,98 @@ img {
     box-shadow: var(--shadow-md);
 }
 
+/* Favorite Button Styles */
+.favorite-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.favorite-btn.active {
+    background: rgba(239, 68, 68, 0.95);
+    animation: heartbeat 0.3s ease;
+}
+
+.favorite-btn-large {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    background: var(--secondary-color);
+    color: white;
+    transition: var(--transition);
+}
+
+.favorite-btn-large:hover {
+    background: #475569;
+    transform: translateY(-2px);
+}
+
+.favorite-btn-large.active {
+    background: var(--danger-color);
+    color: white;
+}
+
+.favorite-btn-large.active:hover {
+    background: #dc2626;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.15);
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.empty-state p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
 .animal-info {
     padding: 1.25rem;
 }

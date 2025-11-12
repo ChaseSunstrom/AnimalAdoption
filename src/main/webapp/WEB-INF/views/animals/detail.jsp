@@ -152,10 +152,18 @@
                                         </div>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="${pageContext.request.contextPath}/applications/new?animalId=${animal.animalId}"
-                                           class="btn btn-primary btn-block btn-large">
-                                            Apply to Adopt ${animal.name}
-                                        </a>
+                                        <div class="action-buttons">
+                                            <a href="${pageContext.request.contextPath}/applications/new?animalId=${animal.animalId}"
+                                               class="btn btn-primary btn-block btn-large">
+                                                Apply to Adopt ${animal.name}
+                                            </a>
+                                            
+                                            <button class="btn btn-secondary btn-block favorite-btn-large ${isSaved ? 'active' : ''}"
+                                                    onclick="toggleFavorite(${animal.animalId}, this)"
+                                                    title="${isSaved ? 'Remove from saved' : 'Save for later'}">
+                                                ${isSaved ? '❤️ Saved' : '🤍 Save for Later'}
+                                            </button>
+                                        </div>
                                         <c:if test="${not empty matchScore}">
                                             <div class="match-details">
                                                 <h4>Why this is a ${matchScore.matchLevel}:</h4>
@@ -195,5 +203,40 @@
     </main>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    
+    <script>
+        function toggleFavorite(animalId, button) {
+            const isActive = button.classList.contains('active');
+            const action = isActive ? 'unsave' : 'save';
+            
+            fetch('${pageContext.request.contextPath}/saved-animals', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'action=' + action + '&animalId=' + animalId
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (action === 'save') {
+                        button.classList.add('active');
+                        button.textContent = '❤️ Saved';
+                        button.title = 'Remove from saved';
+                    } else {
+                        button.classList.remove('active');
+                        button.textContent = '🤍 Save for Later';
+                        button.title = 'Save for later';
+                    }
+                } else {
+                    alert('Failed to update favorite: ' + (data.message || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to update favorite');
+            });
+        }
+    </script>
 </body>
 </html>

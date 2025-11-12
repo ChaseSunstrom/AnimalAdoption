@@ -1,5 +1,6 @@
 package com.animaladoption.controller;
 
+import com.animaladoption.dao.SavedAnimalDAO;
 import com.animaladoption.model.Animal;
 import com.animaladoption.model.MatchScore;
 import com.animaladoption.service.AnimalService;
@@ -24,12 +25,14 @@ public class AnimalDetailServlet extends HttpServlet {
     private AnimalService animalService;
     private RecommendationService recommendationService;
     private AdoptionApplicationService applicationService;
+    private SavedAnimalDAO savedAnimalDAO;
 
     @Override
     public void init() throws ServletException {
         animalService = new AnimalService();
         recommendationService = new RecommendationService();
         applicationService = new AdoptionApplicationService();
+        savedAnimalDAO = new SavedAnimalDAO();
     }
 
     @Override
@@ -68,6 +71,10 @@ public class AnimalDetailServlet extends HttpServlet {
                         // Check if already applied
                         boolean hasApplied = applicationService.hasAppliedForAnimal(userId, animalId);
                         request.setAttribute("hasApplied", hasApplied);
+                        
+                        // Check if animal is saved
+                        boolean isSaved = savedAnimalDAO.isAnimalSaved(userId, animalId);
+                        request.setAttribute("isSaved", isSaved);
                     } catch (SQLException e) {
                         // Match score is optional, continue without it
                     }

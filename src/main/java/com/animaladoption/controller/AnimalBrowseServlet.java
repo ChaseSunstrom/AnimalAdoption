@@ -1,7 +1,9 @@
 package com.animaladoption.controller;
 
+import com.animaladoption.dao.SavedAnimalDAO;
 import com.animaladoption.model.Animal;
 import com.animaladoption.model.SearchCriteria;
+import com.animaladoption.model.User;
 import com.animaladoption.service.AnimalService;
 import com.animaladoption.util.ValidationUtil;
 import jakarta.servlet.ServletException;
@@ -9,11 +11,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Servlet for browsing and searching animals.
@@ -21,11 +26,13 @@ import java.util.List;
 @WebServlet(name = "AnimalBrowseServlet", urlPatterns = {"/animals"})
 public class AnimalBrowseServlet extends HttpServlet {
     private AnimalService animalService;
+    private SavedAnimalDAO savedAnimalDAO;
     private static final int PAGE_SIZE = 12;
 
     @Override
     public void init() throws ServletException {
         animalService = new AnimalService();
+        savedAnimalDAO = new SavedAnimalDAO();
     }
 
     @Override
@@ -45,12 +52,26 @@ public class AnimalBrowseServlet extends HttpServlet {
             int totalPages = animalService.getTotalPages(criteria, PAGE_SIZE);
             int totalCount = animalService.getSearchResultCount(criteria);
 
+            // Get saved animal IDs for logged-in adopter
+            Set<Integer> savedAnimalIds = new HashSet<>();
+            HttpSession session = request.getSession(false);
+            if (session != null && session.getAttribute("user") != null) {
+                User user = (User) session.getAttribute("user");
+                if ("adopter".equals(user.getUserType())) {
+                    List<Animal> savedAnimals = savedAnimalDAO.getSavedAnimals(user.getUserId());
+                    for (Animal savedAnimal : savedAnimals) {
+                        savedAnimalIds.add(savedAnimal.getAnimalId());
+                    }
+                }
+            }
+
             // Set attributes for JSP
             request.setAttribute("animals", animals);
             request.setAttribute("currentPage", page);
             request.setAttribute("totalPages", totalPages);
             request.setAttribute("totalCount", totalCount);
             request.setAttribute("criteria", criteria);
+            request.setAttribute("savedAnimalIds", savedAnimalIds);
 
             // Forward to browse page
             request.getRequestDispatcher("/WEB-INF/views/animals/browse.jsp").forward(request, response);

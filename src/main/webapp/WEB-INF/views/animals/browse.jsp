@@ -105,6 +105,15 @@
                                                     <img src="${pageContext.request.contextPath}/images/placeholder-pet.jpg" alt="${animal.name}">
                                                 </c:otherwise>
                                             </c:choose>
+                                            
+                                            <c:if test="${not empty sessionScope.user && sessionScope.user.userType == 'adopter'}">
+                                                <c:set var="isSaved" value="${savedAnimalIds.contains(animal.animalId)}" />
+                                                <button class="favorite-btn ${isSaved ? 'active' : ''}" 
+                                                        onclick="toggleFavorite(${animal.animalId}, this)"
+                                                        title="${isSaved ? 'Remove from saved' : 'Save for later'}">
+                                                    ${isSaved ? '❤️' : '🤍'}
+                                                </button>
+                                            </c:if>
                                         </div>
                                         <div class="animal-info">
                                             <h3>${animal.name}</h3>
@@ -156,5 +165,40 @@
     </main>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    
+    <script>
+        function toggleFavorite(animalId, button) {
+            const isActive = button.classList.contains('active');
+            const action = isActive ? 'unsave' : 'save';
+            
+            fetch('${pageContext.request.contextPath}/saved-animals', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'action=' + action + '&animalId=' + animalId
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (action === 'save') {
+                        button.classList.add('active');
+                        button.textContent = '❤️';
+                        button.title = 'Remove from saved';
+                    } else {
+                        button.classList.remove('active');
+                        button.textContent = '🤍';
+                        button.title = 'Save for later';
+                    }
+                } else {
+                    alert('Failed to update favorite: ' + (data.message || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to update favorite');
+            });
+        }
+    </script>
 </body>
 </html>
