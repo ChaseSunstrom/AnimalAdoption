@@ -42,6 +42,9 @@
                 <a href="${pageContext.request.contextPath}/applications" class="btn btn-secondary">
                     My Applications
                 </a>
+                <a href="${pageContext.request.contextPath}/change-password" class="btn btn-secondary">
+                    Change Password
+                </a>
             </div>
 
             <c:if test="${not empty recommendations}">

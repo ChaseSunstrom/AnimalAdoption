@@ -52,6 +52,9 @@
                 <a href="${pageContext.request.contextPath}/applications" class="btn btn-secondary">
                     View Applications
                 </a>
+                <a href="${pageContext.request.contextPath}/change-password" class="btn btn-secondary">
+                    Change Password
+                </a>
             </div>
 
             <section class="animals-section">

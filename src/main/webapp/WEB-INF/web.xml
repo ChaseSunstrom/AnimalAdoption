@@ -28,6 +28,7 @@
         <url-pattern>/dashboard/*</url-pattern>
         <url-pattern>/profile/*</url-pattern>
         <url-pattern>/shelter/*</url-pattern>
+        <url-pattern>/change-password</url-pattern>
     </filter-mapping>
 
     <error-page>

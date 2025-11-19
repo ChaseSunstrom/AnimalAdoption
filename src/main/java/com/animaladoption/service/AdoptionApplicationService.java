@@ -153,11 +153,7 @@ public class AdoptionApplicationService {
             throw new IllegalArgumentException("Cannot withdraw an application that has been " + application.getStatus());
         }
 
-        // Get shelter user ID (we'll use shelter_id as placeholder since we need a user_id)
-        Shelter shelter = shelterDAO.findById(application.getShelterId());
-        int shelterUserId = shelter != null ? shelter.getUserId() : 0;
-
-        return applicationDAO.updateStatus(applicationId, "withdrawn", shelterUserId, "Withdrawn by adopter");
+        return applicationDAO.updateStatus(applicationId, "withdrawn", adopterId, "Withdrawn by adopter");
     }
 
     /**

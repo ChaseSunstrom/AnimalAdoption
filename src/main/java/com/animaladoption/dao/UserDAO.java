@@ -103,6 +103,23 @@ public class UserDAO extends BaseDAO {
         }
     }
 
+    public boolean updatePassword(int userId, String passwordHash) throws SQLException {
+        String sql = "UPDATE users SET password_hash = ? WHERE user_id = ?";
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, passwordHash);
+            stmt.setInt(2, userId);
+
+            return stmt.executeUpdate() > 0;
+        } finally {
+            closeResources(conn, stmt);
+        }
+    }
+
     public void updateLastLogin(int userId) throws SQLException {
         String sql = "UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE user_id = ?";
         executeUpdate(sql, userId);

@@ -192,8 +192,9 @@ public class AuthenticationService {
             throw new IllegalArgumentException(PasswordUtil.getPasswordRequirements());
         }
 
-        user.setPasswordHash(PasswordUtil.hashPassword(newPassword));
-        return userDAO.update(user);
+        String newPasswordHash = PasswordUtil.hashPassword(newPassword);
+        user.setPasswordHash(newPasswordHash);
+        return userDAO.updatePassword(userId, newPasswordHash);
     }
 
     /**

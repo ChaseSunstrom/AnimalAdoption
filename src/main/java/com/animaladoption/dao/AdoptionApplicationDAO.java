@@ -186,7 +186,7 @@ public class AdoptionApplicationDAO extends BaseDAO {
         }
     }
 
-    public boolean updateStatus(int applicationId, String status, int reviewedBy, String shelterNotes) throws SQLException {
+    public boolean updateStatus(int applicationId, String status, Integer reviewedBy, String shelterNotes) throws SQLException {
         String sql = "UPDATE adoption_applications " +
                      "SET status = ?, reviewed_at = CURRENT_TIMESTAMP, reviewed_by = ?, shelter_notes = ? " +
                      "WHERE application_id = ?";
@@ -199,7 +199,11 @@ public class AdoptionApplicationDAO extends BaseDAO {
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, status);
-            stmt.setInt(2, reviewedBy);
+            if (reviewedBy != null) {
+                stmt.setInt(2, reviewedBy);
+            } else {
+                stmt.setNull(2, Types.INTEGER);
+            }
             stmt.setString(3, shelterNotes);
             stmt.setInt(4, applicationId);
 
