@@ -12,7 +12,7 @@ public class ValidationUtil {
     );
 
     private static final Pattern PHONE_PATTERN = Pattern.compile(
-            "^[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$|^\\([0-9]{3}\\)\\s?[0-9]{3}-[0-9]{4}$"
+            "^\\+?1?[-.\\s]?\\(?[0-9]{3}\\)?[-.\\s]?[0-9]{3}[-.\\s]?[0-9]{4}$|^[0-9]{10}$|^[0-9]{7}$"
     );
 
     private static final Pattern ZIP_CODE_PATTERN = Pattern.compile(
@@ -34,7 +34,8 @@ public class ValidationUtil {
 
     /**
      * Validate phone number format.
-     * Accepts: 555-1234, 555-555-1234, (555) 555-1234
+     * Accepts: 5551234, 5551234567, 555-1234, 555-555-1234, (555) 555-1234,
+     *          +1-555-555-1234, 1.555.555.1234, and similar variations
      *
      * @param phone Phone number to validate
      * @return true if valid, false otherwise

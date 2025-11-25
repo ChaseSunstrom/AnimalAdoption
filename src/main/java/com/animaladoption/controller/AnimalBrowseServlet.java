@@ -152,9 +152,22 @@ public class AnimalBrowseServlet extends HttpServlet {
             }
         }
 
-        // Age range
+        // Age range with validation
         int minAge = ValidationUtil.parseInt(request.getParameter("minAge"), 0);
         int maxAge = ValidationUtil.parseInt(request.getParameter("maxAge"), 0);
+
+        // Validate age values are reasonable (0-30 years for most pets)
+        if (minAge < 0) minAge = 0;
+        if (maxAge < 0) maxAge = 0;
+        if (minAge > 30) minAge = 30;
+        if (maxAge > 30) maxAge = 30;
+
+        // If minAge > maxAge, swap them to ensure valid range
+        if (minAge > 0 && maxAge > 0 && minAge > maxAge) {
+            int temp = minAge;
+            minAge = maxAge;
+            maxAge = temp;
+        }
 
         if (minAge > 0) {
             criteria.setMinAgeYears(minAge);

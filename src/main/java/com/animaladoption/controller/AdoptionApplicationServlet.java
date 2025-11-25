@@ -4,6 +4,8 @@ import com.animaladoption.model.AdoptionApplication;
 import com.animaladoption.model.Animal;
 import com.animaladoption.service.AdoptionApplicationService;
 import com.animaladoption.service.AnimalService;
+import com.animaladoption.dao.ShelterDAO;
+import com.animaladoption.model.Shelter;
 import com.animaladoption.util.ValidationUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,11 +25,13 @@ import java.util.List;
 public class AdoptionApplicationServlet extends HttpServlet {
     private AdoptionApplicationService applicationService;
     private AnimalService animalService;
+    private ShelterDAO shelterDAO;
 
     @Override
     public void init() throws ServletException {
         applicationService = new AdoptionApplicationService();
         animalService = new AnimalService();
+        shelterDAO = new ShelterDAO();
     }
 
     @Override
@@ -170,8 +174,11 @@ public class AdoptionApplicationServlet extends HttpServlet {
         if ("adopter".equals(userType) && application.getAdopterId() == userId) {
             canView = true;
         } else if ("shelter".equals(userType)) {
-            // Simplified - should verify shelter ownership
-            canView = true;
+            // Verify shelter ownership - only allow if application belongs to this shelter
+            Shelter shelter = shelterDAO.findByUserId(userId);
+            if (shelter != null && shelter.getShelterId() == application.getShelterId()) {
+                canView = true;
+            }
         }
 
         if (!canView) {
